@@ -3,7 +3,7 @@ import Image from '../UI/Image'
 import Rating from '../UI/Rating'
 
 const Info = ({detail}) => {
-  
+
  const genre = detail.genres
  let language;
  if(detail.spoken_languages.length !== 0) {
