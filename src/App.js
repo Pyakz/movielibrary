@@ -74,10 +74,10 @@ const App = () => {
               </MobileHeader> 
                 
                 <Switch>
-                  <Route path='/' exact component={Movies} />
-                  <Route exact path='/:category' component={Movies} />
-                  <Route exact path='/results' component={Movies} />
-                  <Route exact path='/movie/:id' component={Movie} />
+                  <Route path='/' exact render={(props) => <Movies  {...props} navHide={navHide} />} />
+                  <Route exact path='/:category' render={(props) => <Movies  {...props} navHide={navHide} />} />
+                  <Route exact path='/results' render={(props) => <Movies  {...props} navHide={navHide} />} />
+                  <Route exact path='/movie/:id' render={(props) => <Movie  {...props} navHide={navHide} />} />
                   <Route path='/'  render={() => <h1> cant find</h1>} />
                 </Switch>
 

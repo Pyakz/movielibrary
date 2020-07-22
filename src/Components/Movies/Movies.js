@@ -8,13 +8,18 @@ import axios from 'axios';
 import AnotherLoader from '../UI/AnotherLoader';
 import styled from 'styled-components'
 import MovieSection from './MovieSection';
+
 const Current = styled.div`
  
-       position: absolute;
+ @media(max-width:802px) {
+    margin-left: 0;
+    align-self: center;
+    }
         padding: 3rem 0;
-        margin: 5rem;
+        margin-top: 5rem;
+        margin-left: 5rem;
+        align-self: flex-start;
         color: var(--color1);
-
         h1 {
            font-size: 3rem;
         }
@@ -24,7 +29,18 @@ const Current = styled.div`
         }
 `;
 
+const Main = styled.main`
+    height: ${props => props.load ? '100vh' : null};
+    width: ${props => props.load ? '100%' : null};
+    /* position:${props => props.navHide ?  null: 'absolute'}; */
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+`;
+
 const Movies = (props) => {
+
     const value = useContext(MovieGenre)
     const myMovies = useContext(MovieContext)
     const { currentMovies, setCurrentMovies, loading, setLoading} = myMovies
@@ -74,9 +90,9 @@ let Section =  (
                 )
 
     return (
-        <main className={loading ? 'main' : null} > 
+        <Main load={loading} {...props}> 
             {loading ?  <AnotherLoader /> : Section  }
-        </main> 
+        </Main > 
     )
 }
 

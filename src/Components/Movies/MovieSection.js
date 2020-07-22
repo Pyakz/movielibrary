@@ -4,13 +4,14 @@ import Card from './Card';
 import NotFound from '../UI/NotFound';
 // const Card = React.lazy(() => import('./Card'));
 const StyledMovieSection = styled.section`
-    margin-top: 15rem;
+    margin-top: 1rem;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
     width: 100%;
     vertical-align: middle;
+
 `;
 const MovieSection = ({movies}) => {
     let MovieContainer = <NotFound />

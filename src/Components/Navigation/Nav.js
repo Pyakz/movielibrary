@@ -10,8 +10,9 @@ const NavBar = styled.nav`
     flex-direction: column;
     justify-content: flex-start;
     position: ${props => props.navHide ? 'sticky' : 'absolute'};
-    top: 0;
+    top: ${props => props.navHide ? '0' : null};
     left: ${props => props.navHide ? '0' : '-100%'};
+    width:${props => props.navHide ? 'auto' : null };
     padding: 1.5rem;
     line-height: 1rem;
     box-shadow: var(--shadow1);
@@ -19,7 +20,6 @@ const NavBar = styled.nav`
     height: 100%;
     z-index: 1001;
     transition: all .5s ease-in-out;
-    
     @media(min-width:802px) {
         display: flex !important;
     }

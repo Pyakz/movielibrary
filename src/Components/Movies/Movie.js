@@ -27,6 +27,10 @@ height:${props => props.stage ? '100vh' : null};
 
 `;
 const StyledDetails = styled.div`
+  @media(max-width:801px) {
+        flex-direction:column;
+    }
+    
     box-shadow: 0px 16px 0px -10px var(--color2);
     flex-wrap: wrap;
     display: flex;
@@ -88,12 +92,19 @@ const StyledDetails = styled.div`
         }
     
         .genre {
+            @media(max-width:801px) {
+                    text-align:center;
+                }
+    
             h2 {
                   @media (max-width:300px) {
                         font-size: 2.5rem;
                     } 
             }
                 span {
+                    @media(max-width:802px) {
+                        text-align:center;
+                    }
                     display: flex;
                     padding: 1rem;
                     p {
@@ -103,8 +114,12 @@ const StyledDetails = styled.div`
                 }
         }
         .plot {
+            @media(max-width:802px) {
+                text-align:center;
+                }
             width: 100%;
             h2 {
+                
                   @media (max-width:300px) {
                         font-size: 2.5rem;
                     } 
@@ -197,7 +212,7 @@ if(!loading) {
                 <StyledDetails>
                 <MovieInformation detail={detail} />
                 </StyledDetails>
-                {!loadingReco ? <Recommend reco={ reco }/> : <h1 style={{marginTop:'5rem', position:'fixed'}} > Loading.. </h1>}
+                {!loadingReco ? <Recommend reco={ reco }/> : <h1 style={{marginTop:'5rem'}} > Loading.. </h1>}
                 <BackButton history={history} />
 
      </Fragment>           
