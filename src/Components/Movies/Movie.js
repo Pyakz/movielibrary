@@ -14,6 +14,7 @@ transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
 margin-top: ${props => props.stage ? null : '5rem'};
 padding:1rem; 
 display:flex;
+position:${props => props.currentWidth ? 'static' : 'absolute' };
 flex-direction:column;
 justify-content:center;
 align-items:center;
@@ -27,7 +28,8 @@ height:${props => props.stage ? '100vh' : null};
 
 `;
 const StyledDetails = styled.div`
-  @media(max-width:801px) {
+  
+  @media(max-width:900px) {
         flex-direction:column;
     }
     
@@ -49,12 +51,9 @@ const StyledDetails = styled.div`
         img {
             border-radius: 2rem;
             box-shadow: var(--shadow1);
-            @media(max-width:987px) {
-                    margin: 0 auto;
+             
+            @media(max-width:900px) {
                     width:70% !important;
-            }     
-            @media(max-width:500px) {
-                    width:90% !important;
             }
               
         }
@@ -143,7 +142,7 @@ const StyledDetails = styled.div`
 
 
 
-const Movie = ({match, history}) => {
+const Movie = ({match, history, position}) => {
 
     const [detail, setDetail] = useState({})
     const [reco, setReco] = useState([])
@@ -218,7 +217,7 @@ if(!loading) {
      </Fragment>           
 }
     return (
-        <StyledContainer stage={loading}>
+        <StyledContainer stage={loading} currentWidth={position}>
               {eachMovie}
         </StyledContainer>
     )

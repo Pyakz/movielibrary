@@ -18,10 +18,11 @@ const MovieCards = styled.div`
     margin: 2.5rem;
 
 
-    @media (max-width:500px) {
-        width: 16rem;
+    @media (max-width:600px) {
+        width: 20rem;
     }
 
+ 
     
     img {
         height: 35rem;

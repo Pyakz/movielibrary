@@ -40,6 +40,16 @@
     width: 1.2rem;
     background-color: var(--DarkColor1);
   }
+
+   
+  nav::-webkit-scrollbar-thumb {
+    background-color:var(--color2);
+  }
+  nav::-webkit-scrollbar {
+    width: .5rem;
+    background-color: var(--DarkColor1);
+  }
+
   ::selection {
     color: #319494;
     background-color: #ffffff;

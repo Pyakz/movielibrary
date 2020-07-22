@@ -9,10 +9,10 @@ const NavBar = styled.nav`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    position: ${props => props.navHide ? 'sticky' : 'absolute'};
+    
     top: ${props => props.navHide ? '0' : null};
-    left: ${props => props.navHide ? '0' : '-100%'};
     width:${props => props.navHide ? 'auto' : null };
+    left:-100%;
     padding: 1.5rem;
     line-height: 1rem;
     box-shadow: var(--shadow1);
@@ -20,6 +20,17 @@ const NavBar = styled.nav`
     height: 100%;
     z-index: 1001;
     transition: all .5s ease-in-out;
+    position: ${props => props.navHide ? 'sticky' : 'absolute'};
+    @media (max-width:800px) { 
+        left: ${props => props.navHide ? '0' : '-100%'};
+        position:fixed; 
+    } 
+    
+    @media (max-width:500px) {
+        overflow:auto scroll;
+        padding: 3rem;
+       /* background-color: var(--DarkColor1);  */
+   } 
     @media(min-width:802px) {
         display: flex !important;
     }
@@ -30,7 +41,7 @@ const NavBar = styled.nav`
         color: #cfe4f3;
     }
 
-    p {
+      p {
         margin: 1rem 0;
         font-size: 1.8rem;
         font-weight: bold;
@@ -60,21 +71,10 @@ const NavBar = styled.nav`
                         transform:scale(1.1)
                     }
             }
-           
-          
-
         span {
             margin: 1rem .5rem;
         }
-
     }
-
-     @media (max-width:500px) {
-       
-        padding: 3rem;
-        /* background-color: var(--DarkColor1);  */
-    } 
-
 `;
 
 
@@ -92,14 +92,15 @@ const CloseNav = styled.span`
         color:red;
     }
 `;
+
 const Nav = (props) => {
-  
+
     return (
-        <NavBar navHide={props.navHide}>
+        <NavBar navHide={props.navHide} currentWidth={props.position}  >
             {/* <Switch/> */}
             <CloseNav onClick={props.closer}> &#x2716; </CloseNav>
             <NavPoster />
-            <NavGenres />
+            <NavGenres clicked={props.clicked} currentWidth={props.position}/>
             <NavLogo />
         </NavBar>
     )

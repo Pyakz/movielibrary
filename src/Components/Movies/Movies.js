@@ -11,10 +11,10 @@ import MovieSection from './MovieSection';
 
 const Current = styled.div`
  
- @media(max-width:802px) {
-    margin-left: 0;
-    align-self: center;
-    }
+    @media(max-width:802px) {
+        margin-left: 0;
+        align-self: center;
+        }
         padding: 3rem 0;
         margin-top: 5rem;
         margin-left: 5rem;
@@ -32,7 +32,7 @@ const Current = styled.div`
 const Main = styled.main`
     height: ${props => props.load ? '100vh' : null};
     width: ${props => props.load ? '100%' : null};
-    /* position:${props => props.navHide ?  null: 'absolute'}; */
+    position:${props => props.currentWidth ?  'static' : 'absolute'};
     display: flex;
     flex-direction:column;
     justify-content: center;
@@ -41,11 +41,31 @@ const Main = styled.main`
 
 const Movies = (props) => {
 
+
+
+    const [position, setPostion] = useState(false)  
+    const [windowDimension, setWindowDimension] = useState(getWindowDimensions());
+    
+    function getWindowDimensions() {
+        const { innerWidth: width } = window;
+        return width
+    }
+    
+    useEffect(() => {
+        const handleResize = () => setWindowDimension(getWindowDimensions());
+        window.addEventListener('resize', handleResize);
+        if(windowDimension >= 801) { 
+        setPostion(true) 
+            console.log(windowDimension);
+        }
+        return () => window.removeEventListener('resize', handleResize);
+    }, [windowDimension]);
+
     const value = useContext(MovieGenre)
     const myMovies = useContext(MovieContext)
     const { currentMovies, setCurrentMovies, loading, setLoading} = myMovies
     const { genre } = value
-
+ 
     useEffect(()=> {
         let isCancelled = false;
         const movie = async() => {
@@ -90,7 +110,7 @@ let Section =  (
                 )
 
     return (
-        <Main load={loading} {...props}> 
+        <Main load={loading} {...props} currentWidth={position}> 
             {loading ?  <AnotherLoader /> : Section  }
         </Main > 
     )

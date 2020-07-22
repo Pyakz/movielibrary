@@ -97,7 +97,7 @@ const SearchBar = (props) => {
        const myRef = useRef();
        const { setCurrentMovies, setLoading } = useContext(MovieContext)
        const [open, setOpen] = useState(false)
-       const [query, setQuery] = useState('')
+       const [query, setQuery] = useState(null)
 
   
        const handleClickOutside = e => {
@@ -105,37 +105,38 @@ const SearchBar = (props) => {
                setOpen(false);
            }
        };
-   
+       useEffect(() => {
+        myRef.current.focus();
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    },[]);
+
        const handleClickInside = () => setOpen(true);
       
        const handleSubmit = (e) => {
-        setLoading(true)
-        props.history.push('/results')
-        const movie = async() => {
-                const results = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c24e2e0c38251c16e41291ca0067c75d&query=${query}&page=1`)
-                const gotData = await results.data.results;
-                setCurrentMovies(gotData);
-                setQuery('')
-                setLoading(false)
-                console.log(gotData);
-        }
-        movie()
-        setQuery('')
-        setOpen(false);
-        e.preventDefault()
+        if(query) {
+            setLoading(true)
+            props.history.push('/results')
+            const movie = async() => {
+                    const results = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c24e2e0c38251c16e41291ca0067c75d&query=${query}&page=1`)
+                    const gotData = await results.data.results;
+                    setCurrentMovies(gotData);
+                    setQuery('')
+                    setLoading(false)
+            }
+            movie()
+            setOpen(false);
+            setQuery('')
+            e.preventDefault()
+        } 
        };
 
-       useEffect(() => {
-           myRef.current.focus();
-           document.addEventListener('mousedown', handleClickOutside);
-           return () => document.removeEventListener('mousedown', handleClickOutside);
-       },[]);
-
+   
        
     return (
         <Search onClick={handleClickInside} clicked={open} ref={myRef} onSubmit={handleSubmit}>
             <input type="text" placeholder="Find movies.." onChange={(e) => setQuery(e.target.value)} />
-            <h1>&#x2315;</h1>
+            <h1 onClick={handleSubmit}>&#x2315;</h1>
         </Search>
     )
 }

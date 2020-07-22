@@ -11,7 +11,6 @@ const StyledMovieSection = styled.section`
     justify-content: center;
     width: 100%;
     vertical-align: middle;
-
 `;
 const MovieSection = ({movies}) => {
     let MovieContainer = <NotFound />
