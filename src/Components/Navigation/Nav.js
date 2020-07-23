@@ -5,8 +5,7 @@ import NavPoster from './NavPoster';
 import NavGenres from './NavGenres';
 
 const NavBar = styled.nav`
- @media (min-height:1100px) {height:100vh;}
-
+    @media (min-height:1100px) { height:100vh; }
     @media(min-width:802px) { display: flex !important; }
     @media (max-width:300px) { width:90vw; }  
     @media (max-width:800px) { 
@@ -15,8 +14,6 @@ const NavBar = styled.nav`
         position:fixed; 
     } 
           /* background-color: var(--DarkColor1);  */
-
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -33,13 +30,14 @@ const NavBar = styled.nav`
     position: ${props => props.navHide ? 'sticky' : 'absolute'};
   
     .active {
+
         background-color: #435c5c;
         border-radius: 1.5rem;
         font-weight: bold;
         color: #cfe4f3;
         @media (max-width:800px) {  border-radius: 17.5rem !important; }
-    }
 
+    }
       p {
         @media (max-width:800px) { margin: 2.5rem 0; align-self: center; font-size: 2rem;}
         margin: 1rem 0;
@@ -85,15 +83,13 @@ const CloseNav = styled.span`
 
     
     @media (min-width:800px) { display:none; }
-    @media (max-width:800px) { font-size:3rem; margin:2rem 1rem; }
+    @media (max-width:800px) { font-size:3rem; margin-bottom:-2rem;margin-right:-1rem; }
 
     align-self:flex-end;
     transition:all .3s ease-in-out;
     font-size:2rem;
-    &:hover {
-        cursor:pointer;
-        color:red;
-    }
+    &:hover { cursor:pointer;
+        color:red; }
 `;
 
 const Nav = (props) => {
