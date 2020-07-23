@@ -22,12 +22,12 @@ const NavBar = styled.nav`
     transition: all .5s ease-in-out;
     position: ${props => props.navHide ? 'sticky' : 'absolute'};
     @media (max-width:800px) { 
+        overflow:auto scroll;
         left: ${props => props.navHide ? '0' : '-100%'};
         position:fixed; 
     } 
     
     @media (max-width:500px) {
-        overflow:auto scroll;
         padding: 3rem;
        /* background-color: var(--DarkColor1);  */
    } 

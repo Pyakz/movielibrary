@@ -63,7 +63,6 @@ const App = () => {
   
   const navCloser = () => setNavHide(false)
   const navOpener = () => setNavHide(true)
-
   
   function getWindowDimensions() {
       const { innerWidth: width } = window;
@@ -91,7 +90,7 @@ const App = () => {
         <Scroll >
           <MovieProvider> 
             <GenreProvider> 
-              {navHide ? <Backdrop click={navCloser} /> : null }
+              {navHide ? <Backdrop click={navCloser}  position={position} /> : null }
             <Nav navHide={navHide} closer={navCloser} position={position} clicked={navCloser}/> 
 
               <MobileHeader > 

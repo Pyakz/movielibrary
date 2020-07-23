@@ -14,7 +14,7 @@ transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
 margin-top: ${props => props.stage ? null : '5rem'};
 padding:1rem; 
 display:flex;
-position:${props => props.currentWidth ? 'static' : 'absolute' };
+/* position:${props => props.currentWidth ? 'static' : 'absolute' }; */
 flex-direction:column;
 justify-content:center;
 align-items:center;
@@ -100,7 +100,10 @@ const StyledDetails = styled.div`
                         font-size: 2.5rem;
                     } 
             }
-                span {
+                div {
+                    display:flex;
+                    align-items:flex-start;
+                    justify-content:center;
                     @media(max-width:802px) {
                         text-align:center;
                     }

@@ -11,10 +11,11 @@ import MovieSection from './MovieSection';
 
 const Current = styled.div`
  
-    @media(max-width:802px) {
+@media(max-width:802px) {
         margin-left: 0;
         align-self: center;
         }
+
         padding: 3rem 0;
         margin-top: 5rem;
         margin-left: 5rem;

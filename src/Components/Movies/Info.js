@@ -27,9 +27,9 @@ const Info = ({detail}) => {
 
         <div className="genre">
             <h2>Genres</h2>
-            <span>
+            <div>
                 {genre.map(gen =>   <p key={gen.id}> &#9673; {gen.name} </p>)}
-            </span>
+            </div>
          
         </div>
 
