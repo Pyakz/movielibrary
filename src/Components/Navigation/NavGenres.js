@@ -6,7 +6,7 @@ const NavGenres = ({clicked, currentWidth}) => {
    const value = useContext(MovieGenre)
    const { setGenre } = value
    
-   
+ 
    // Hard Coded these instead of fetching them, atlteast it could save data
    const Categories = [
       {id: 28, name: "Action"},
@@ -36,11 +36,9 @@ const NavGenres = ({clicked, currentWidth}) => {
             <p>Genres</p>
             <ul>
                 {Categories.map(genre => (
-                        <NavLink  key={genre.id} to={'/' + genre.name} onClick={() => {
+                        <NavLink  key={genre.id} to={`/${genre.name}`} onClick={() => {
                             setGenre(genre.id)
-                            if(!currentWidth) { 
-                                clicked()
-                            }
+                            if(!currentWidth) { clicked() }
                         }}> 
                             <span> &#9673; </span> {genre.name} 
                         </NavLink>     

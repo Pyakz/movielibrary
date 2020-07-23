@@ -5,15 +5,13 @@ import NavPoster from './NavPoster';
 import NavGenres from './NavGenres';
 
 const NavBar = styled.nav`
+    /* Setting up media queries */
     @media (min-height:1100px) { height:100vh; }
-    @media(min-width:802px) { display: flex !important; }
-    @media (max-width:300px) { width:90vw; }  
     @media (max-width:800px) { 
         overflow:auto scroll;
         left: ${props => props.navHide ? '0' : '-100%'};
         position:fixed; 
     } 
-          /* background-color: var(--DarkColor1);  */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -22,21 +20,26 @@ const NavBar = styled.nav`
     left:-100%;
     padding: 1.5rem;
     line-height: 1rem;
-    box-shadow: var(--shadow1);
-    background-color: var(--DarkColor1) ; // var(--DarkColor1)
+    box-shadow: 6px 0px 8px -5px rgba(82,82,82,1);
+    background-color:  var(--DarkColor1);
     height: 100%;
-    z-index: 1001;
-    transition: all .5s ease-in-out;
+    z-index: 1002;
+    transition: all .35s ease-in-out;
     position: ${props => props.navHide ? 'sticky' : 'absolute'};
-  
-    .active {
 
+         /* LightMode */
+    /*   box-shadow: var(--shadow1); */
+    
+     /* DarkMode */
+    /* background-color:  var(--DarkColor1);  */
+
+   
+    .active {
         background-color: #435c5c;
         border-radius: 1.5rem;
         font-weight: bold;
         color: #cfe4f3;
         @media (max-width:800px) {  border-radius: 17.5rem !important; }
-
     }
       p {
         @media (max-width:800px) { margin: 2.5rem 0; align-self: center; font-size: 2rem;}
@@ -80,11 +83,8 @@ const NavBar = styled.nav`
 
 
 const CloseNav = styled.span`
-
-    
     @media (min-width:800px) { display:none; }
     @media (max-width:800px) { font-size:3rem; margin-bottom:-2rem;margin-right:-1rem; }
-
     align-self:flex-end;
     transition:all .3s ease-in-out;
     font-size:2rem;

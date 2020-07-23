@@ -3,20 +3,24 @@ import styled from 'styled-components'
 
 const BDrop = styled.div`
 
-   @media(min-width:800px) {
-        opacity:1;
-        background-color:transparent;
-    }
-
     position:fixed;
     height: 100vh;
     width: 100vw;
     background-color:black;
     opacity:0.3;
-    z-index:1000;
-    transition: all .9s ease-in-out;
+    z-index:1001;
+    transition: ease-in-out;
 
  
+   @media(min-width:800px) {
+        opacity:1;
+        display:none;
+        background-color:transparent;
+    }
+
+    /* @media(max-height:799px) {height: 100vh; } */
+    
+
 `;
 const Backdrop = ({click, position}) => {
 

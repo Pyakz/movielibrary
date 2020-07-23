@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './loaders.css';
 import App from './App';
+import { PageProvider } from './Context/PaginationContext';
 
 import * as serviceWorker from './serviceWorker';
 // const App = React.lazy(() => import('./App'));
@@ -11,7 +12,9 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <Router>  
+      <PageProvider > 
         <App />   
+      </PageProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

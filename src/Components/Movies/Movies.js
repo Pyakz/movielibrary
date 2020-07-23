@@ -1,17 +1,19 @@
-import React, {useState, useEffect, useContext, Fragment} from 'react'
+import React, {useEffect, useContext, Fragment} from 'react'
 import { MovieGenre } from '../../Context/GenreContext';
 import { MovieContext } from '../../Context/MovieContext';
 
+import { CurrentPage } from '../../Context/PaginationContext';
+
 import axios from 'axios';
-// import Loader from '../UI/Loader';
-// import LazyLoader from '../UI/LazyLoader';
 import AnotherLoader from '../UI/AnotherLoader';
 import styled from 'styled-components'
 import MovieSection from './MovieSection';
+import Pagination from '../UI/Pagination';
+
 
 const Current = styled.div`
  
-@media(max-width:802px) {
+@media(max-width:800px) {
         margin-left: 0;
         align-self: center;
         }
@@ -21,9 +23,7 @@ const Current = styled.div`
         margin-left: 5rem;
         align-self: flex-start;
         color: var(--color1);
-        h1 {
-           font-size: 3rem;
-        }
+        h1 { font-size: 3rem; }
         p {
             font-size: 2rem;
             font-style: bold;
@@ -41,43 +41,25 @@ const Main = styled.main`
 `;
 
 const Movies = (props) => {
-
-
-
-    const [position, setPostion] = useState(false)  
-    const [windowDimension, setWindowDimension] = useState(getWindowDimensions());
-    
-    function getWindowDimensions() {
-        const { innerWidth: width } = window;
-        return width
-    }
-    
-    useEffect(() => {
-        const handleResize = () => setWindowDimension(getWindowDimensions());
-        window.addEventListener('resize', handleResize);
-        if(windowDimension >= 801) { 
-        setPostion(true) 
-            console.log(windowDimension);
-        }
-        return () => window.removeEventListener('resize', handleResize);
-    }, [windowDimension]);
-
     const value = useContext(MovieGenre)
     const myMovies = useContext(MovieContext)
-    const { currentMovies, setCurrentMovies, loading, setLoading} = myMovies
+    const myPage = useContext(CurrentPage)
+    const { currentMovies, setCurrentMovies, loading, setLoading } = myMovies
     const { genre } = value
- 
+    const { page } = myPage
+
+
     useEffect(()=> {
         let isCancelled = false;
         const movie = async() => {
             try {
                 if(genre) { 
-                    const results = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c24e2e0c38251c16e41291ca0067c75d&sort_by=popularity.desc&with_genres=${genre}&page=1`)
+                    const results = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c24e2e0c38251c16e41291ca0067c75d&sort_by=popularity.desc&with_genres=${genre}&page=${page}`)
                     const gotData = await results.data.results;
                     setCurrentMovies(gotData)
                     setLoading(false)
                 } else {
-                    const results = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=c24e2e0c38251c16e41291ca0067c75d&page=1`)
+                    const results = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=c24e2e0c38251c16e41291ca0067c75d&page=${page}`)
                     const gotData = await results.data.results;
                     setCurrentMovies(gotData)
                     setLoading(false)
@@ -97,7 +79,7 @@ const Movies = (props) => {
             console.log('Movie section unmounts');
         }
 
-    },[genre,setCurrentMovies,setLoading])
+    },[genre,setCurrentMovies,setLoading, page])
     
 
 let Section =  ( 
@@ -106,12 +88,13 @@ let Section =  (
                     <h1>{props.match.params.category ? props.match.params.category.toUpperCase() : 'Popular' }</h1>
                     <p>Movies</p>
                     </Current>
-                    <MovieSection movies={currentMovies}/> 
+                    <MovieSection movies={currentMovies}/>
+                 <Pagination /> 
                 </Fragment>
                 )
 
     return (
-        <Main load={loading} {...props} currentWidth={position}> 
+        <Main load={loading} {...props} currentWidth={props.position}> 
             {loading ?  <AnotherLoader /> : Section  }
         </Main > 
     )

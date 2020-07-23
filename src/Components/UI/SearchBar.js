@@ -17,7 +17,6 @@ const Search = styled.form`
         margin:0;
         input { height: 37px !important; }
     }
-
     box-shadow: 0px 5px 18px -13px rgba(0,0,0,1);
     margin:2rem 3rem;
     float: right;
@@ -27,7 +26,7 @@ const Search = styled.form`
     font-style: inherit;
     transition: all .5s ease-in-out;
     height: 50px;
-    z-index: 1;
+    /* z-index: 1000; */
     display:flex;
     justify-content:flex-end;
     align-items:center;
@@ -134,7 +133,7 @@ const SearchBar = (props) => {
    
        
     return (
-        <Search onClick={handleClickInside} clicked={open} ref={myRef} onSubmit={handleSubmit}>
+        <Search onClick={handleClickInside} clicked={open} ref={myRef} onSubmit={handleSubmit} {...props}>
             <input type="text" placeholder="Find movies.." onChange={(e) => setQuery(e.target.value)} />
             <h1 onClick={handleSubmit}>&#x2315;</h1>
         </Search>
