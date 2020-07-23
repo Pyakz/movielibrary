@@ -5,17 +5,15 @@ import NavPoster from './NavPoster';
 import NavGenres from './NavGenres';
 
 const NavBar = styled.nav`
+ @media (min-height:1100px) {height:100vh;}
 
     @media(min-width:802px) { display: flex !important; }
+    @media (max-width:300px) { width:90vw; }  
     @media (max-width:800px) { 
         overflow:auto scroll;
         left: ${props => props.navHide ? '0' : '-100%'};
         position:fixed; 
-        width: 50vw;
     } 
-  
-    @media (max-width:500px) { width:70vw;  padding: 3rem; } 
-    @media (max-width:400px) { width:90vw; }  
           /* background-color: var(--DarkColor1);  */
 
 
@@ -43,8 +41,7 @@ const NavBar = styled.nav`
     }
 
       p {
-        @media (max-width:500px) { align-self: center; }
-        @media (max-width:800px) {margin: 2.5rem 0; align-self: center; font-size: 3rem; }
+        @media (max-width:800px) { margin: 2.5rem 0; align-self: center; font-size: 2rem;}
         margin: 1rem 0;
         font-size: 1.8rem;
         font-weight: bold;
@@ -57,13 +54,8 @@ const NavBar = styled.nav`
        display: flex;
        flex-direction: column;
             a { 
-                @media (max-width:800px) { 
-                    font-size: 2.2rem;
-                    margin:1rem 0;
-                    padding:1rem;
-                    /* &:hover { border-radius: 17.5rem !important; } */
-                }
-                @media (max-width:500px) {font-size: 2.5rem; margin:.5rem; padding: 1.5rem .5rem !important; width: 100%;}
+                @media (max-width:500px) {font-size: 1.5rem; margin:.5rem; padding: 1.5rem .5rem !important; width: 100%;}
+                @media (max-width:350px) { padding: 1rem !important; font-size: 1.2rem;}
                 outline: none;
                 font-size: 1.5rem;
                 font-weight: 500;
@@ -94,7 +86,6 @@ const CloseNav = styled.span`
     
     @media (min-width:800px) { display:none; }
     @media (max-width:800px) { font-size:3rem; margin:2rem 1rem; }
-    @media (max-width:500px) { font-size:2.5rem;margin:-1rem -2rem 1rem 0}
 
     align-self:flex-end;
     transition:all .3s ease-in-out;
