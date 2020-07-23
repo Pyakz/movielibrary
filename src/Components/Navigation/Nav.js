@@ -6,10 +6,22 @@ import NavGenres from './NavGenres';
 
 const NavBar = styled.nav`
 
+    @media(min-width:802px) { display: flex !important; }
+    @media (max-width:800px) { 
+        overflow:auto scroll;
+        left: ${props => props.navHide ? '0' : '-100%'};
+        position:fixed; 
+        width: 50vw;
+    } 
+  
+    @media (max-width:500px) { width:70vw;  padding: 3rem; } 
+    @media (max-width:400px) { width:90vw; }  
+          /* background-color: var(--DarkColor1);  */
+
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    
     top: ${props => props.navHide ? '0' : null};
     width:${props => props.navHide ? 'auto' : null };
     left:-100%;
@@ -21,27 +33,18 @@ const NavBar = styled.nav`
     z-index: 1001;
     transition: all .5s ease-in-out;
     position: ${props => props.navHide ? 'sticky' : 'absolute'};
-    @media (max-width:800px) { 
-        overflow:auto scroll;
-        left: ${props => props.navHide ? '0' : '-100%'};
-        position:fixed; 
-    } 
-    
-    @media (max-width:500px) {
-        padding: 3rem;
-       /* background-color: var(--DarkColor1);  */
-   } 
-    @media(min-width:802px) {
-        display: flex !important;
-    }
+  
     .active {
         background-color: #435c5c;
         border-radius: 1.5rem;
         font-weight: bold;
         color: #cfe4f3;
+        @media (max-width:800px) {  border-radius: 17.5rem !important; }
     }
 
       p {
+        @media (max-width:500px) { align-self: center; }
+        @media (max-width:800px) {margin: 2.5rem 0; align-self: center; font-size: 3rem; }
         margin: 1rem 0;
         font-size: 1.8rem;
         font-weight: bold;
@@ -49,10 +52,18 @@ const NavBar = styled.nav`
     }
 
     ul {
+        @media (max-width:500px) { align-self: center; }
        text-align: start;        
        display: flex;
        flex-direction: column;
             a { 
+                @media (max-width:800px) { 
+                    font-size: 2.2rem;
+                    margin:1rem 0;
+                    padding:1rem;
+                    /* &:hover { border-radius: 17.5rem !important; } */
+                }
+                @media (max-width:500px) {font-size: 2.5rem; margin:.5rem; padding: 1.5rem .5rem !important; width: 100%;}
                 outline: none;
                 font-size: 1.5rem;
                 font-weight: 500;
@@ -80,9 +91,10 @@ const NavBar = styled.nav`
 
 const CloseNav = styled.span`
 
-    @media (min-width:800px) {
-        display:none;
-    }
+    
+    @media (min-width:800px) { display:none; }
+    @media (max-width:800px) { font-size:3rem; margin:2rem 1rem; }
+    @media (max-width:500px) { font-size:2.5rem;margin:-1rem -2rem 1rem 0}
 
     align-self:flex-end;
     transition:all .3s ease-in-out;

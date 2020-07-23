@@ -29,11 +29,9 @@ const MobileHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.52);
-  z-index:1000;
+  z-index:999;
 
-  @media (max-width:800px) {
-    padding: .5rem 2.5rem;
-  }  
+  @media (max-width:800px) { padding: .5rem 2.5rem; }  
 
 `;
 const Hamburger = styled.span`
