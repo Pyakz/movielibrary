@@ -3,7 +3,6 @@ import React, {Fragment} from 'react'
 const AnotherLoader = () => {
     return (
     <Fragment>    
-    <h1 style={{marginTop:'5rem', position:'fixed'}}>...</h1>
     <div className="loading">
         <div className="finger finger-1">
           <div className="finger-item">

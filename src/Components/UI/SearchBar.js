@@ -4,6 +4,7 @@ import {  withRouter } from "react-router-dom";
 import styled from 'styled-components'
 import axios from 'axios';
 import { MovieContext } from '../../Context/MovieContext';
+import { MovieGenre } from '../../Context/GenreContext';
 
 const Search = styled.form`
 
@@ -42,8 +43,8 @@ const Search = styled.form`
             overflow: hidden;
             outline: none;
             box-sizing: border-box;
-            width: 43.5px;
-            height: 43.5px;
+            width: 4.35rem;
+            height: 4.35rem;
             top: 0;
             right: 0;
             border-radius: 50%;
@@ -95,9 +96,10 @@ const SearchBar = (props) => {
        // i just found this solution for this toggle of search box, i dunno but its amazing
        const myRef = useRef();
        const { setCurrentMovies, setLoading } = useContext(MovieContext)
+       const { setGenreName } = useContext(MovieGenre)
        const [open, setOpen] = useState(false)
        const [query, setQuery] = useState(null)
-
+      
   
        const handleClickOutside = e => {
            if (!myRef.current.contains(e.target)) {
@@ -123,6 +125,7 @@ const SearchBar = (props) => {
                     setQuery('')
                     setLoading(false)
             }
+            setGenreName('Results')
             movie()
             setOpen(false);
             setQuery('')

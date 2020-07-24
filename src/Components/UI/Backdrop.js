@@ -8,7 +8,7 @@ const BDrop = styled.div`
     width: 100vw;
     background-color:black;
     opacity:0.3;
-    z-index:1001;
+    z-index:${props => props.navHide ? '8' : '-1'};
     transition: ease-in-out;
 
  
@@ -22,7 +22,7 @@ const BDrop = styled.div`
     
 
 `;
-const Backdrop = ({click, position}) => {
+const Backdrop = ({click, position, navHide}) => {
 
     //this backdrop will appear everytime the navbar 
     // is toggled between max width of 400 but this 
@@ -30,7 +30,7 @@ const Backdrop = ({click, position}) => {
    // this click prop will close the nav if the backdrop is clicked
    // the value is coming of the App state
 
-    return <BDrop onClick={ !position ? click : null }  > </BDrop>
+    return <BDrop onClick={ !position ? click : null }  navHide={navHide}> </BDrop>
     
 }
 

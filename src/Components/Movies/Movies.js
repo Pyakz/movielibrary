@@ -1,15 +1,11 @@
 import React, {useEffect, useContext, Fragment} from 'react'
 import { MovieGenre } from '../../Context/GenreContext';
 import { MovieContext } from '../../Context/MovieContext';
-
 import { CurrentPage } from '../../Context/PaginationContext';
-
 import axios from 'axios';
 import AnotherLoader from '../UI/AnotherLoader';
 import styled from 'styled-components'
 import MovieSection from './MovieSection';
-import Pagination from '../UI/Pagination';
-
 
 const Current = styled.div`
  
@@ -41,12 +37,11 @@ const Main = styled.main`
 `;
 
 const Movies = (props) => {
-    const value = useContext(MovieGenre)
-    const myMovies = useContext(MovieContext)
-    const myPage = useContext(CurrentPage)
-    const { currentMovies, setCurrentMovies, loading, setLoading } = myMovies
-    const { genre } = value
-    const { page } = myPage
+
+    const { genre, genreName } = useContext(MovieGenre)
+    const { currentMovies, setCurrentMovies, loading, setLoading } = useContext(MovieContext)
+    const { page } = useContext(CurrentPage)
+
 
 
     useEffect(()=> {
@@ -57,13 +52,13 @@ const Movies = (props) => {
                     const results = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c24e2e0c38251c16e41291ca0067c75d&sort_by=popularity.desc&with_genres=${genre}&page=${page}`)
                     const gotData = await results.data.results;
                     setCurrentMovies(gotData)
-                    setLoading(false)
+                        setLoading(false)
                 } else {
                     const results = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=c24e2e0c38251c16e41291ca0067c75d&page=${page}`)
                     const gotData = await results.data.results;
                     setCurrentMovies(gotData)
                     setLoading(false)
-                }
+                    }
              
             } catch (error) {
                 if (!isCancelled) {
@@ -74,22 +69,20 @@ const Movies = (props) => {
         }
         movie()
         return () => {
-            setLoading(true)
+                setLoading(true)       
             isCancelled = true;
             console.log('Movie section unmounts');
         }
 
     },[genre,setCurrentMovies,setLoading, page])
     
-
 let Section =  ( 
                 <Fragment >
                     <Current>
-                    <h1>{props.match.params.category ? props.match.params.category.toUpperCase() : 'Popular' }</h1>
+                    <h1>{genreName.toUpperCase()}</h1>
                     <p>Movies</p>
                     </Current>
                     <MovieSection movies={currentMovies}/>
-                 <Pagination /> 
                 </Fragment>
                 )
 

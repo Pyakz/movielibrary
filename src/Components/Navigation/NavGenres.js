@@ -1,11 +1,12 @@
 import React, { Fragment, useContext } from 'react'
 import { NavLink } from "react-router-dom";
 import { MovieGenre } from '../../Context/GenreContext';
-
+import { CurrentPage } from '../../Context/PaginationContext';
 const NavGenres = ({clicked, currentWidth}) => {
    const value = useContext(MovieGenre)
-   const { setGenre } = value
-   
+   const currentPage = useContext(CurrentPage)
+   const { setGenre,setGenreName } = value
+   const { setPage } = currentPage
  
    // Hard Coded these instead of fetching them, atlteast it could save data
    const Categories = [
@@ -38,6 +39,8 @@ const NavGenres = ({clicked, currentWidth}) => {
                 {Categories.map(genre => (
                         <NavLink  key={genre.id} to={`/${genre.name}`} onClick={() => {
                             setGenre(genre.id)
+                            setPage(1)
+                            setGenreName(genre.name)
                             if(!currentWidth) { clicked() }
                         }}> 
                             <span> &#9673; </span> {genre.name} 

@@ -5,6 +5,8 @@ import './index.css';
 import './loaders.css';
 import App from './App';
 import { PageProvider } from './Context/PaginationContext';
+import { MovieProvider } from './Context/MovieContext';
+import { GenreProvider } from './Context/GenreContext';
 
 import * as serviceWorker from './serviceWorker';
 // const App = React.lazy(() => import('./App'));
@@ -13,7 +15,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>  
       <PageProvider > 
-        <App />   
+         <MovieProvider>
+          <GenreProvider>
+             <App />  
+           </GenreProvider>
+         </MovieProvider>
       </PageProvider>
     </Router>
   </React.StrictMode>,

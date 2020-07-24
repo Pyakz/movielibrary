@@ -17,9 +17,9 @@ const MovieCards = styled.div`
     overflow: hidden;
     margin: 2.5rem;
 
-
     @media (max-width:600px) {
-        width: 20rem;
+        width: 25rem;
+       
     }
 
  
@@ -33,7 +33,8 @@ const MovieCards = styled.div`
         box-shadow: 0px 4px 21px -13px rgba(0,0,0,1);
         object-fit: cover;    
         @media (max-width:500px) {
-            height: 25rem;
+            height: 40rem;
+            width: 100% ;
         }
     }
 
@@ -72,8 +73,8 @@ const Card = ({details}) => {
 
     return (
             <Link to={`/movie/${details.id}`}>
-                <MovieCards>
-                        <Image details={details} />
+                <MovieCards >
+                  <Image details={details}  />
                         <div className="title">
                         <h2>{details.title}</h2>
                         <Rating  rating={details.vote_average} />      

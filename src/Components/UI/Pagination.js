@@ -7,7 +7,7 @@ const Page = styled.div`
 
     width:100%;
     margin:4rem 1rem;
-    z-index:1002;
+    z-index:${props => props.navHice ? '0' : '2'};
     display:flex;
     flex-direction:row;
     justify-content:space-around;
@@ -52,9 +52,49 @@ const Page = styled.div`
     
 
 `;
+
+export const HomeButton = styled.div`
+    width:100%;
+    margin:4rem 1rem;
+    z-index:${props => props.navHice ? '0' : '2'};
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    align-items:center;
+    
+    div {
+            display:flex;
+            flex-direction:row;
+            justify-content:space-around;
+            align-items:center;
+            background-color:var(--color1);
+            color:white;
+            margin:1rem;
+            border-radius:50rem;
+            padding:1rem 2.5rem;
+            transition: all .3s ease-in-out;
+            font-size:1.2rem;
+            box-shadow: 0px 3px 10px -5px rgba(0,0,0,1);
+
+    h4 { font-size:1.2rem;}
+
+    .left {
+            font-size:1.5rem;
+            margin-right:1rem;
+        }
+
+        &:hover {
+            transform:scaleX(1.1);
+            color:var(--DarkColor1);
+            cursor:pointer;
+            background-color:lightblue;
+            box-shadow: 0px 3px 17px -5px rgba(0,0,0,1);
+            }
+    }
+`;
+
 const Pagination = (props) => {
-    const currentPage = useContext(CurrentPage)
-    const {page, setPage} = currentPage
+    const {page, setPage} = useContext(CurrentPage)
 
 const pageAdder = () => {
     setPage(page + 1)
@@ -101,7 +141,7 @@ let button; //Initialize button variable
     </>
 }
     return (
-        <Page>
+        <Page navHice={props.navHide}>
                 {button}
         </Page>
     )

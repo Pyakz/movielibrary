@@ -1,11 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
-
 import { Route, Switch } from "react-router-dom";
 import SearchBar from './Components/UI/SearchBar';
-import { GenreProvider } from './Context/GenreContext';
-import { MovieProvider } from './Context/MovieContext';
-
 import Movies from './Components/Movies/Movies';
 import Movie from './Components/Movies/Movie';
 import Nav from './Components/Navigation/Nav';
@@ -31,7 +27,7 @@ const MobileHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.52);
-  z-index:999;
+  z-index:9;
 
   @media (max-width:800px) { padding: .5rem 2.5rem; }  
 
@@ -43,15 +39,13 @@ const Hamburger = styled.span`
     font-size:3.5rem;
     color: var(--DarkColor1);
 
-    &:hover {
-        cursor:pointer;
-    }
+    &:hover { cursor:pointer; }
 
-    @media (min-width:801px) {
-        display:none;
-    }  
+    @media (min-width:801px) { display:none; }  
 
 `;
+
+
 
 function getWindowDimensions() {
   const { innerWidth: width } = window;
@@ -59,7 +53,6 @@ function getWindowDimensions() {
 }
 
 const App = () => {
- 
   const [navHide, setNavHide] = useState(true)
   const [position, setPosition] = useState(false)  
   const [windowDimension, setWindowDimension] = useState(getWindowDimensions());
@@ -84,16 +77,13 @@ const App = () => {
   return (
       <Container>
         <Scroll >
-          <MovieProvider> 
-              <GenreProvider> 
-                 {navHide ? <Backdrop click={navCloser}  position={position} /> : null }
+        
+              {navHide ? <Backdrop click={navCloser}  position={position} navHide={navHide} /> : null }
                 <Nav navHide={navHide} closer={navCloser} position={position} clicked={navCloser}/> 
-
-                      <MobileHeader > 
+                      <MobileHeader navHide={navHide} > 
                         <Hamburger onClick={navOpener}> &#9776; </Hamburger>
                         <SearchBar />    
-                      </MobileHeader> 
-                
+                      </MobileHeader>         
                   <Switch>
                     <Route path='/' exact render={(props) => <Movies  {...props} navHide={navHide} position={position}/>} />
                     <Route exact path='/:category' render={(props) => <Movies  {...props} navHide={navHide} position={position}/>} />
@@ -101,9 +91,6 @@ const App = () => {
                     <Route exact path='/movie/:id' render={(props) => <Movie  {...props} navHide={navHide} position={position}/>} />
                     <Route path='/'  render={() => <h1> cant find</h1>} />
                   </Switch>
-
-              </GenreProvider>     
-          </MovieProvider>
         </Scroll>
       </Container> 
   )

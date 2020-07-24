@@ -23,15 +23,9 @@ const NavBar = styled.nav`
     box-shadow: 6px 0px 8px -5px rgba(82,82,82,1);
     background-color:  var(--DarkColor1);
     height: 100%;
-    z-index: 1002;
+    z-index: 10;
     transition: all .35s ease-in-out;
     position: ${props => props.navHide ? 'sticky' : 'absolute'};
-
-         /* LightMode */
-    /*   box-shadow: var(--shadow1); */
-    
-     /* DarkMode */
-    /* background-color:  var(--DarkColor1);  */
 
    
     .active {
@@ -84,7 +78,7 @@ const NavBar = styled.nav`
 
 const CloseNav = styled.span`
     @media (min-width:800px) { display:none; }
-    @media (max-width:800px) { font-size:3rem; margin-bottom:-2rem;margin-right:-1rem; }
+    @media (max-width:800px) { font-size:3rem;}
     align-self:flex-end;
     transition:all .3s ease-in-out;
     font-size:2rem;
@@ -99,7 +93,7 @@ const Nav = (props) => {
             {/* <Switch/> */}
             <CloseNav onClick={props.closer}> &#x2716; </CloseNav>
             <NavPoster />
-            <NavGenres clicked={props.clicked} currentWidth={props.position}/>
+            <NavGenres clicked={props.clicked}/>
             <NavLogo />
         </NavBar>
     )
