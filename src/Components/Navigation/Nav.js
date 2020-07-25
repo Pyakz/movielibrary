@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import NavLogo from './NavLogo';
 import NavPoster from './NavPoster';
 import NavGenres from './NavGenres';
-
 const NavBar = styled.nav`
     /* Setting up media queries */
     @media (min-height:1100px) { height:100vh; }
@@ -87,7 +86,7 @@ const Nav = (props) => {
 
     return (
         <NavBar navHide={props.navHide} currentWidth={props.position}  >
-            {/* <Switch/> */}
+        
             <CloseNav onClick={props.clicked}> &#x2716; </CloseNav>
             <NavPoster />
             <NavGenres clicked={props.clicked}/>

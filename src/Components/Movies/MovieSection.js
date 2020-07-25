@@ -24,6 +24,7 @@ if(movies.length !== 0) {
 }
     return (
         <StyledMovieSection>
+          
           {MovieContainer}
           {MoviePagination}
         </StyledMovieSection>

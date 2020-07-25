@@ -14,6 +14,7 @@ const { setGenre, setGenreName } = useContext(MovieGenre)
                  history.push('/')
                  setGenre(28)
                  setGenreName('popular')
+                 document.title = 'Home'
             }}> 
                 <div > 
                 <i className="fa fa-home" style={{marginRight:'.5rem'}}></i>

@@ -41,7 +41,8 @@ const NavGenres = ({clicked, currentWidth, open}) => {
                             setGenre(genre.id)
                             setPage(1)
                             setGenreName(genre.name)
-                           
+                            document.title = genre.name 
+
                        
                             if(!currentWidth) { clicked() } 
                         }}> 

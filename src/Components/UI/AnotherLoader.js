@@ -2,7 +2,9 @@ import React, {Fragment} from 'react'
 
 const AnotherLoader = () => {
     return (
-    <Fragment>    
+    <Fragment> 
+ 
+       
     <div className="loading">
         <div className="finger finger-1">
           <div className="finger-item">
@@ -28,6 +30,7 @@ const AnotherLoader = () => {
           <div className="last-finger-item"><i></i></div>
         </div>
         </div>
+
     </Fragment>
     )
 }

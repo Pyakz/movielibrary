@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const BDrop = styled.div`
 
     position:fixed;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color:black;
     opacity:0.3;
     z-index:${props => props.navHide ? '8' : '-1'};
@@ -13,6 +13,8 @@ const BDrop = styled.div`
 
  
    @media(min-width:800px) {
+        height: 100%;
+        width: 100%;
         opacity:1;
         display:none;
         background-color:transparent;

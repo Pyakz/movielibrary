@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, Fragment} from 'react'
+import React, {useEffect, useContext, useState , Fragment} from 'react'
 import { MovieGenre } from '../../Context/GenreContext';
 import { MovieContext } from '../../Context/MovieContext';
 import { CurrentPage } from '../../Context/PaginationContext';
@@ -6,7 +6,7 @@ import axios from 'axios';
 import AnotherLoader from '../UI/AnotherLoader';
 import styled from 'styled-components'
 import MovieSection from './MovieSection';
-
+import Select from '../UI/Select';
 const Current = styled.div`
  
 @media(max-width:800px) {
@@ -45,13 +45,14 @@ const Movies = (props) => {
     const { genre, genreName } = useContext(MovieGenre)
     const { currentMovies, setCurrentMovies, loading, setLoading } = useContext(MovieContext)
     const { page } = useContext(CurrentPage)
-
-
+    const [sort, setSort] = useState('popularity.desc');
+  
     useEffect(()=> {
         let link = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${page}`
         if(genre) {
-            link = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&with_genres=${genre}&page=${page}`
-        }
+            link = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=${sort}&with_genres=${genre}&page=${page}`
+        
+        } 
 
         const ourRequest = axios.CancelToken.source() 
     
@@ -70,19 +71,22 @@ const Movies = (props) => {
             ourRequest.cancel() 
             setLoading(true)       
         }
-    },[genre,setCurrentMovies,setLoading, page,API_KEY])
+    },[genre,setCurrentMovies,setLoading, page,API_KEY, sort])
+
 let Section =  ( 
                 <Fragment >
-                    <Current>
-                    <h1>{genreName.toUpperCase()}</h1>
-                    <p>Movies</p>
-                    </Current>
+                      <Current>      
+                        <h1>{genreName.toUpperCase()}</h1>
+                        <p>Movies</p>
+                     </Current>
+                     <Select selectChanger={setSort}/> 
                     <MovieSection movies={currentMovies}/>
                 </Fragment>
                 )
 
     return (
         <Main load={loading} {...props} currentWidth={props.position}> 
+             
             {loading ?  <AnotherLoader /> : Section  }
         </Main > 
     )

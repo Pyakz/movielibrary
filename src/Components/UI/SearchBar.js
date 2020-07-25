@@ -25,7 +25,7 @@ const Search = styled.form`
     top: 0;
     right: 0;
     font-style: inherit;
-    transition: all .5s ease-in-out;
+    transition: all .3s ease-in-out;
     height: 50px;
     /* z-index: 1000; */
     display:flex;
@@ -95,6 +95,7 @@ const SearchBar = (props) => {
 
        // i just found this solution for this toggle of search box, i dunno but its amazing
        const myRef = useRef();
+
        const { setCurrentMovies, setLoading } = useContext(MovieContext)
        const { setGenreName } = useContext(MovieGenre)
        const [open, setOpen] = useState(false)
@@ -107,7 +108,7 @@ const SearchBar = (props) => {
            }
        };
        useEffect(() => {
-        myRef.current.focus();
+  
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     },[]);
@@ -138,7 +139,7 @@ const SearchBar = (props) => {
     return (
         <Search onClick={handleClickInside} clicked={open} ref={myRef} onSubmit={handleSubmit} {...props}>
             <input type="text" placeholder="Find movies.." onChange={(e) => setQuery(e.target.value)} />
-            <h1 onClick={handleSubmit}>&#x2315;</h1>
+            <h1 onClick={handleSubmit} >&#x2315;</h1>
         </Search>
     )
 }

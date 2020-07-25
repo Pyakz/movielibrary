@@ -52,57 +52,55 @@ const Movie = ({match, history, position}) => {
 
     const {page} = currentPage
 
-    useEffect(() => {
-      
-        let isCancelled = false;
-        try {
-
-            if(!isCancelled) {
-                const getMovie = async () => {
-                    const results = await axios.get(`https://api.themoviedb.org/3/movie/${match.params.id}?api_key=c24e2e0c38251c16e41291ca0067c75d&append_to_response=videos`)
+      useEffect(() => {
+         
+        let link = `https://api.themoviedb.org/3/movie/${match.params.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`
+        const ourRequest = axios.CancelToken.source() 
+            const getMovie = async () => {
+                try {
+                    const results = await axios.get(link, {cancelToken: ourRequest.token})
                     setDetail(results.data);
                     setLoading(false)
+                   
+                } catch (err) { 
+                    console.log(err) 
                 }
-                getMovie()
+                    
             }
-        } catch (error) {
-            console.log(error);
-        }
-       
-    
+            getMovie()
+
         return () => {
             setLoading(true)
-            isCancelled = true;
-            console.log('Movie section unmounts');
+            ourRequest.cancel() 
         }
 
     }, [match.params.id])
 
-
-    useEffect(() => {
-      
-        let isCancelled = false;
-        try {
-            if(!isCancelled) {
-                const getReco = async () => {
-                    const results = await axios.get(`https://api.themoviedb.org/3/movie/${match.params.id}/similar?api_key=c24e2e0c38251c16e41291ca0067c75d&page=${page}`)
-                    setReco(results.data.results);
-                    setLoadingReco(false)
-                }
-                getReco()
-            }
-        } catch (error) {
-            console.log(error);
-        }
-       
+    useEffect(() => { 
+        document.title = detail.title 
+    }, [detail.title]);
+    //suggested movies
+    useEffect(()=> {
+        const link = `https://api.themoviedb.org/3/movie/${match.params.id}/similar?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
     
-        return () => {
-            setLoading(true)
-            isCancelled = true;
-            console.log('Movie section unmounts');
+        const ourRequest = axios.CancelToken.source() 
+
+        const fetchPost = async () => { 
+            try {
+                  const response = await axios.get(link, {cancelToken: ourRequest.token})
+                  setReco(response.data.results);
+                  setLoadingReco(false)
+            } catch (err) { 
+                console.log(err) 
+            }
         }
 
-    }, [match.params.id,page])
+        fetchPost()
+        return () => {
+            // Cancelling Axios request
+            ourRequest.cancel()    
+        }
+    },[match.params.id,page])
 
 
     let eachMovie = <AnotherLoader />
