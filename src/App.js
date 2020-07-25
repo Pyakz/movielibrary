@@ -53,25 +53,36 @@ function getWindowDimensions() {
 }
 
 const App = () => {
+
+  // False = Close
+  // True = Open
   const [navHide, setNavHide] = useState(true)
   const [position, setPosition] = useState(false)  
   const [windowDimension, setWindowDimension] = useState(getWindowDimensions());
   
-  const navCloser = () => setNavHide(false)
-  const navOpener = () => setNavHide(true)
-  
+
   useEffect(() => {
       const handleResize = () => setWindowDimension(getWindowDimensions());
       window.addEventListener('resize', handleResize);
-      if(windowDimension >= 799) { 
-        setNavHide(true) 
-        setPosition(true) 
+      if(windowDimension > 799) { 
+        setNavHide(true) //will open the sidebar by default if screen width is 800 higher
+        setPosition(true) // sets position to true
       } else {
-        setPosition(false) 
-        setNavHide(false)
+        setPosition(false) //will oclose the sidebar by default if screen width is 800 hlow
+        setNavHide(false) // sets position to false
       }
       return () => window.removeEventListener('resize', handleResize);
   }, [windowDimension]);
+
+  const navCloser = () => setNavHide(false) // will Close
+  const navOpener = () => setNavHide(true) // will Open
+  
+// in clicked props in Nav Component there are two function called betwen toggle
+// IF Position true then every click in Navigation Genre will trigger the navOpener
+// means the sidebar will not close for every click 799 higher or 800up 
+
+// IF Position false then every click in Navigation Genre will trigger the navClose
+// means the sidebar will close every click in 799px lower or 788down
 
 
   return (
@@ -79,7 +90,8 @@ const App = () => {
         <Scroll >
         
               {navHide ? <Backdrop click={navCloser}  position={position} navHide={navHide} /> : null }
-                <Nav navHide={navHide} closer={navCloser} position={position} clicked={navCloser}/> 
+
+                <Nav navHide={navHide}  clicked={ position ? navOpener : navCloser  } position={position} /> 
                       <MobileHeader navHide={navHide} > 
                         <Hamburger onClick={navOpener}> &#9776; </Hamburger>
                         <SearchBar />    

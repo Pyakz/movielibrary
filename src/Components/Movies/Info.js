@@ -91,6 +91,7 @@ const VideoModal = styled.div`
 const Info = ({detail}) => {
     const [videoModal, setVideoModal] = useState(false)
 
+    console.log(detail)
     return (
         <Fragment > 
         <SinglePoster detail={detail} />
@@ -99,7 +100,7 @@ const Info = ({detail}) => {
             <Buttons> 
                 <Button onClick={() => setVideoModal(true)} > <i className='fa fa-play'></i> Trailer </Button>
                 <Button> <i className='fa fa-users'></i> Cast    </Button>
-                <Button> <i className='fa fa-globe'></i> Website </Button>
+                <Button> <i className='fa fa-globe'></i> <a href={detail.homepage} target="_blank" rel="noopener noreferrer"> Website </a></Button>
                 <Button> <i className='fa fa-pencil'></i> Reviews </Button>
             </Buttons>
         {videoModal ? <VideoModalBackDrop onClick={() => setVideoModal(false)}> 

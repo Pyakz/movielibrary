@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from 'react'
 import { NavLink } from "react-router-dom";
 import { MovieGenre } from '../../Context/GenreContext';
 import { CurrentPage } from '../../Context/PaginationContext';
-const NavGenres = ({clicked, currentWidth}) => {
+const NavGenres = ({clicked, currentWidth, open}) => {
    const value = useContext(MovieGenre)
    const currentPage = useContext(CurrentPage)
    const { setGenre,setGenreName } = value
@@ -41,7 +41,9 @@ const NavGenres = ({clicked, currentWidth}) => {
                             setGenre(genre.id)
                             setPage(1)
                             setGenreName(genre.name)
-                            if(!currentWidth) { clicked() }
+                           
+                       
+                            if(!currentWidth) { clicked() } 
                         }}> 
                             <span> &#9673; </span> {genre.name} 
                         </NavLink>     

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Image from '../UI/Image'
 import Rating from '../UI/Rating'
 import styled from 'styled-components';
-
+import { LoaderContainer } from '../UI/Image';
+import LazyLoader from '../UI/LazyLoader'
 const Poster = styled.div`
 
         display: flex;
@@ -27,16 +28,20 @@ const Poster = styled.div`
 
 `;
 const SinglePoster = ({detail}) => {
+    const [loaded, setLoaded] = useState(false);
+
+
     let language;
     if(detail.spoken_languages.length !== 0) {
         language = detail.spoken_languages[0].name
      } else {
         language = 'Cannot find language..'
      }
-    
+    console.log(loaded)
     return (
-        <Poster>
-            <Image details={detail} /> 
+        <Poster didLoad={loaded}>
+           {loaded ?  null : <LoaderContainer> <LazyLoader /> </LoaderContainer> } 
+            <Image details={detail} loaded={setLoaded}/> 
             <h3>{detail.runtime+"min"} / {language} / {detail.release_date.slice(0,4)} </h3>                       
             <Rating rating={detail.vote_average} card/>
         </Poster>

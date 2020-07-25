@@ -69,9 +69,7 @@ const NavBar = styled.nav`
                         transform:scale(1.1)
                     }
             }
-        span {
-            margin: 1rem .5rem;
-        }
+        span { margin: 1rem .5rem; }
     }
 `;
 
@@ -82,8 +80,7 @@ const CloseNav = styled.span`
     align-self:flex-end;
     transition:all .3s ease-in-out;
     font-size:2rem;
-    &:hover { cursor:pointer;
-        color:red; }
+    &:hover { cursor:pointer; color:red; }
 `;
 
 const Nav = (props) => {
@@ -91,7 +88,7 @@ const Nav = (props) => {
     return (
         <NavBar navHide={props.navHide} currentWidth={props.position}  >
             {/* <Switch/> */}
-            <CloseNav onClick={props.closer}> &#x2716; </CloseNav>
+            <CloseNav onClick={props.clicked}> &#x2716; </CloseNav>
             <NavPoster />
             <NavGenres clicked={props.clicked}/>
             <NavLogo />
