@@ -31,13 +31,15 @@ const SinglePoster = ({detail}) => {
     const [loaded, setLoaded] = useState(false);
 
 
+    // if there is to language available
+    // else it well choose the first index in array of language
     let language;
     if(detail.spoken_languages.length !== 0) {
         language = detail.spoken_languages[0].name
      } else {
         language = 'Cannot find language..'
      }
-    console.log(loaded)
+
     return (
         <Poster didLoad={loaded}>
            {loaded ?  null : <LoaderContainer> <LazyLoader /> </LoaderContainer> } 

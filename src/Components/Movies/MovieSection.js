@@ -17,6 +17,7 @@ const StyledMovieSection = styled.section`
 const MovieSection = ({movies}) => {
     let MovieContainer = <NotFound />
     let MoviePagination = null
+
 if(movies.length !== 0) {
     MovieContainer = movies.map( movie => <Suspense key={movie.id} fallback={<h1> Loading ..</h1>}><Card details={movie} key={movie.id}/></Suspense> )      
     MoviePagination = <Pagination /> 

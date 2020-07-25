@@ -38,44 +38,39 @@ const Main = styled.main`
 
 const Movies = (props) => {
 
+    //API KEY
+    const API_KEY = process.env.REACT_APP_API_KEY
+
+    // Some state from 
     const { genre, genreName } = useContext(MovieGenre)
     const { currentMovies, setCurrentMovies, loading, setLoading } = useContext(MovieContext)
     const { page } = useContext(CurrentPage)
 
 
-
     useEffect(()=> {
-        let isCancelled = false;
-        const movie = async() => {
-            try {
-                if(genre) { 
-                    const results = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c24e2e0c38251c16e41291ca0067c75d&sort_by=popularity.desc&with_genres=${genre}&page=${page}`)
-                    const gotData = await results.data.results;
-                    setCurrentMovies(gotData)
-                        setLoading(false)
-                } else {
-                    const results = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=c24e2e0c38251c16e41291ca0067c75d&page=${page}`)
-                    const gotData = await results.data.results;
-                    setCurrentMovies(gotData)
-                    setLoading(false)
-                    }
-             
-            } catch (error) {
-                if (!isCancelled) {
-                    throw error;
-                  }
-            }
-          
-        }
-        movie()
-        return () => {
-                setLoading(true)       
-            isCancelled = true;
-            console.log('Movie section unmounts');
+        let link = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${page}`
+        if(genre) {
+            link = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&with_genres=${genre}&page=${page}`
         }
 
-    },[genre,setCurrentMovies,setLoading, page])
+        const ourRequest = axios.CancelToken.source() 
     
+        const fetchPost = async () => { 
+            try {
+                  const response = await axios.get(link, {cancelToken: ourRequest.token,})
+                  setCurrentMovies(response.data.results)
+                  setLoading(false)
+            } catch (err) { 
+                console.log(err) 
+            }
+        }
+        fetchPost()
+        return () => {
+            // Cancelling Axios request
+            ourRequest.cancel() 
+            setLoading(true)       
+        }
+    },[genre,setCurrentMovies,setLoading, page,API_KEY])
 let Section =  ( 
                 <Fragment >
                     <Current>

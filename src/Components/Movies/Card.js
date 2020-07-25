@@ -19,8 +19,8 @@ const MovieCards = styled.div`
     border-radius: 1rem;
     overflow: hidden;
     margin: 2.5rem;
+    
     @media (max-width:600px) { width: 25rem;  }
-
     img {
         height: 35rem;
         overflow: hidden;

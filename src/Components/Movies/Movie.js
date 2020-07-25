@@ -1,8 +1,6 @@
 import React, {useState, useEffect, Fragment, useContext} from 'react'
 import styled from 'styled-components'
 import { CurrentPage } from '../../Context/PaginationContext';
-
-// import LazyLoader from '../UI/LazyLoader'
 import AnotherLoader from '../UI/AnotherLoader'
 import axios from 'axios'
 import Recommend from './Recommend';
@@ -108,7 +106,10 @@ const Movie = ({match, history, position}) => {
 
 
     let eachMovie = <AnotherLoader />
-
+    let pagination = null
+    if(reco.length !== 0 ) {
+        pagination =  <Pagination />
+    }
 if(!loading) {
     eachMovie = 
     <Fragment> 
@@ -116,9 +117,8 @@ if(!loading) {
                 <MovieInformation detail={detail} />
                 </StyledDetails>
                 {!loadingReco ? <Recommend reco={ reco }/> : <h1 style={{marginTop:'5rem'}} > Loading.. </h1>}
-                <Pagination />
+                {pagination}
                 <BackButton history={history} />
-
      </Fragment>           
 }
     return (
