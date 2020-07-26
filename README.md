@@ -1,5 +1,6 @@
 # Movie Library
-First Project React. after watching some basics.<br/>
+First ever project for ReactJS. after watching some basics and tutorials.<br/>
+This far from perfect but i've learned so many things just from this. <br />
 View it live: https://banguis-movielibrary.herokuapp.com/
 
 # Whole View
