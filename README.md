@@ -1,5 +1,5 @@
 # Movie Library
-First Project React. after watching some basics./
+First Project React. after watching some basics.<br/>
 View it live: https://banguis-movielibrary.herokuapp.com/
 
 # Whole View
