@@ -12,6 +12,7 @@ const Poster = styled.div`
         flex:1;
 
         img {
+            visibility:${props => props.didLoad ? 'visible' : 'hidden'};
             border-radius: 2rem;
             box-shadow: var(--shadow1);
             @media(min-width:900px) {  width:25rem !important; }
