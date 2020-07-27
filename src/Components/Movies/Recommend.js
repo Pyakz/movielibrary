@@ -17,7 +17,7 @@ const Recommend = ({reco}) => {
 
     let recom = <div > 
          <h1>Cannot find recommended movies..</h1>
-        <img style={{width:'50%', textAlign:'center'}} src={NoData} alt="Cannot find recommended movies.." /> 
+                <img style={{width:'50%', textAlign:'center'}} src={NoData} alt="Cannot find recommended movies.." /> 
         </div>
     if(reco.length !== 0) {
         recom  = reco.map(rec => (
@@ -29,8 +29,8 @@ const Recommend = ({reco}) => {
     }
     return (
         <Recommendation>
-                    <h1>Recommended</h1>
-                        {recom}
+                    <h1>Suggested</h1>
+                       {recom}
         </Recommendation>
     )
 }

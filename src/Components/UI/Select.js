@@ -1,67 +1,46 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-
-const StyledSelect = styled.div`
- align-self: flex-start;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-left: 2rem;
-  outline: none;
-  border: none;
-  color:silver;
-    @media(max-width:800px ) { align-self: center; }
-`;
-
-const SelecItem = styled.div`
-  margin: 2rem;
-  font-size:1.2rem;
-  padding:${props => props.active ? '1rem 3rem' : '1rem 2rem'};
+const StyledSelect = styled.select`
+  padding-left: 1rem;
+  background-color: var(--color2);
+  height: 3rem;
   border-radius: 2rem;
-  box-shadow: var(--shadow1);
-  color: white;
-  background-color: ${props => props.active ? 'var(--color1)' : 'var(--color2)'};
-  transition: .4s ease-in-out;
-  box-shadow: 0px 3px 10px -5px rgba(0,0,0,1);
-        :hover {
-        transform: scale(1.1);
+  outline: none;
+  transition: .3s ease-in-out;
+  font-size: 1.8rem;
+  color:white;
+  margin: .5rem 0;
+    &:hover {
+        background-color: var(--FontDarkColor);
         cursor: pointer;
-        background-color: var(--color2);
-        }
+    }
 `;
-const Selection = ({selectChanger}) => {
 
-    const [activePopularity, setActivePopularity] = useState(false)
-    const [activeRated, setActiveRated] = useState(false)
-    const [activeRevenue, setActiveRevenue] = useState(false) 
+const StyledSelectItem = styled.option`
+  outline: none;
+  border-radius:15px;
+  border-radius: 2rem;
+  background-color: var(--FontDarkColor);
+  font-size: 1.8rem;
+`;
 
-    const popularityActive = () => {
-        selectChanger('popularity.desc')
-        setActivePopularity(true)
-        setActiveRated(false)
-        setActiveRevenue(false)
-    }
-    const ratedActive = () => {
-        selectChanger('vote_count.desc')
-        setActiveRated(true)
-        setActivePopularity(false)
-        setActiveRevenue(false)
-    }
+const Sort = styled.h3`
+ margin:.5rem 0;
+ @media(max-width:800px) {  align-self: center; }
+`;
 
-    const revenueActive = () => {
-        selectChanger('revenue.desc')
-        setActiveRevenue(true)
-        setActiveRated(false)
-        setActivePopularity(false) 
-    }
+const Selection = ({sort}) => {
+
     return (
-   <StyledSelect >
-       <SelecItem active={activePopularity} onClick={popularityActive} >Popularity</SelecItem>
-       <SelecItem active={activeRated} onClick={ratedActive} >Top Rated</SelecItem>
-       <SelecItem active={activeRevenue} onClick={revenueActive} >Revenue</SelecItem>
-   </StyledSelect >
+      <>
+      <Sort>Sort By:</Sort>
+      <StyledSelect onChange={(e) => sort(e.target.value)}>
+                    <StyledSelectItem value='popularity.desc'>Popularity</StyledSelectItem>
+                    <StyledSelectItem value='vote_count.desc'>Released Date</StyledSelectItem>
+                    <StyledSelectItem value='revenue.desc'>Revenue</StyledSelectItem>
+      </StyledSelect >
+   </>
     )
 }
 

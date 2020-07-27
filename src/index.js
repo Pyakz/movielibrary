@@ -1,15 +1,15 @@
-import React from 'react';
+import React,{Suspense} from 'react';
 import { BrowserRouter as Router,} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import './index.css';
 import './loaders.css';
-import App from './App';
+// import App from './App';
 import { PageProvider } from './Context/PaginationContext';
 import { MovieProvider } from './Context/MovieContext';
 import { GenreProvider } from './Context/GenreContext';
-
+import AnotherLoader from './Components/UI/AnotherLoader';
 import * as serviceWorker from './serviceWorker';
-// const App = React.lazy(() => import('./App'));
+const App = React.lazy(() => import('./App'));
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,7 +17,9 @@ ReactDOM.render(
       <PageProvider > 
          <MovieProvider>
           <GenreProvider>
-             <App />  
+            <Suspense fallback={<div style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', width:'100vw'}}> <AnotherLoader />  </div> }>
+              <App />   
+             </Suspense>
            </GenreProvider>
          </MovieProvider>
       </PageProvider>

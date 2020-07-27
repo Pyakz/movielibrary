@@ -6,6 +6,7 @@ import NotFound from './NotFound.png'
 
 export const LoaderContainer = styled.div`
 
+    justify-self:flex-start;
     height: 35rem;
     width: 23rem;
     display:flex;
@@ -16,12 +17,11 @@ export const LoaderContainer = styled.div`
     border-radius:1rem;
     overflow:hidden;
 
-&:hover { border-radius:0 }
+    &:hover { border-radius:0 }
 
--moz-box-shadow: 0px 0px 20px -6px rgba(51,51,51,1);
-box-shadow: 0px 0px 20px -6px rgba(51,51,51,1);
-
-@media (max-width:500px) { width: 16rem !important; }
+    -moz-box-shadow: 0px 0px 20px -6px rgba(51,51,51,1);
+    box-shadow: 0px 0px 20px -6px rgba(51,51,51,1);
+    @media (max-width:500px) { width: 16rem !important; }
 
 `;
 

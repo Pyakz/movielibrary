@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import Image from '../UI/Image'
 import Rating from '../UI/Rating'
 import styled from 'styled-components';
-import { LoaderContainer } from '../UI/Image';
 import LazyLoader from '../UI/LazyLoader'
 const Poster = styled.div`
 
@@ -28,8 +27,8 @@ const Poster = styled.div`
 
 `;
 const SinglePoster = ({detail}) => {
+    
     const [loaded, setLoaded] = useState(false);
-
 
     // if there is to language available
     // else it well choose the first index in array of language
@@ -42,7 +41,7 @@ const SinglePoster = ({detail}) => {
 
     return (
         <Poster didLoad={loaded}>
-           {loaded ?  null : <LoaderContainer> <LazyLoader /> </LoaderContainer> } 
+           {loaded ?  null : <LazyLoader />  } 
             <Image details={detail} loaded={setLoaded}/> 
             <h3>{detail.runtime+"min"} / {language} / {detail.release_date.slice(0,4)} </h3>                       
             <Rating rating={detail.vote_average} card/>

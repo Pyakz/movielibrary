@@ -17,7 +17,6 @@ const TrailerSection = styled.div`
 `;
 
 const Trailer = ({video,trailerLoaded}) => {
-
     return (
         <TrailerSection>
                 <ReactPlayer  

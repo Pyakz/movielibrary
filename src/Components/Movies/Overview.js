@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
 
-
 const Title = styled.div`
 
     text-align: center;
@@ -13,6 +12,7 @@ const Title = styled.div`
         font-size: 4rem;
         @media (max-width:300px) { font-size: 5.5rem; }  
     }
+
     p { 
         font-size: 1.5rem; 
         @media (max-width:300px) {  font-size: 2.5rem; }   
@@ -20,23 +20,23 @@ const Title = styled.div`
 
 `;
 const Genre = styled.div`
+
  @media(max-width:801px) {  text-align:center; }
     
   h2 {  @media (max-width:300px) { font-size: 2.5rem; }  }
 
-
-                div {
-                    @media(max-width:802px) { text-align:center; justify-content:center; }
-
-                    display:flex;
-                    align-items:flex-start;
-                    justify-content:flex-start;
-                    display: flex;
-                    padding: 1rem;
+         div {
+            @media(max-width:802px) { text-align:center; justify-content:center; }
+            display:flex;
+            align-items:flex-start;
+            justify-content:flex-start;
+            display: flex;
+            padding: 1rem;
+            
+            p { margin: 1rem; font-size: 1.5rem; }
                 
-                p { margin: 1rem; font-size: 1.5rem; }
-                
-                }
+    }
+
 `;
 const Plot = styled.div`
 
@@ -63,10 +63,7 @@ const Plot = styled.div`
 `;
 
 const Overview = ({detail}) => {
-const genre = detail.genres
- 
 
-    
     return (
         <>
             <Title>
@@ -77,7 +74,7 @@ const genre = detail.genres
             <Genre>
                     <h2>Genres</h2>
                     <div>
-                        {genre.map(gen =>   <p key={gen.id}> &#9673; {gen.name} </p>)}
+                        {detail.genres.map(gen =>   <p key={gen.id}> &#9673; {gen.name} </p>)}
                     </div>
             </Genre>
                 

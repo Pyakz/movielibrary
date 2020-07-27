@@ -1,9 +1,10 @@
 import React, {Fragment, useState} from 'react'
+import styled from 'styled-components';
+
 import Overview from './Overview'
 import Trailer from './Hidden/Trailer'
 import LazyLoader from '../UI/LazyLoader'
 import SinglePoster from './SinglePoster'
-import styled from 'styled-components';
 
 const Details = styled.div`
 
@@ -15,6 +16,7 @@ const Details = styled.div`
         justify-self:flex-start;
 
 `;
+
 const Buttons = styled.div`
 
     display:flex;
@@ -81,9 +83,7 @@ const VideoModal = styled.div`
   display:${props => props.trailer ? 'inline-flex' : 'none'};
   
     
-  /* @media screen and (max-width:500px) , screen and (max-height: 700px) {
 
-} */
     @media(max-width:800px) {
         height: 50vh;
         width: 90vw; 
@@ -99,6 +99,7 @@ const Error = styled.div`
   padding: 3rem 5rem;
   background-color: #316169;
 `;
+
 const Info = ({detail}) => {
     const [videoModal, setVideoModal] = useState(false)
     const [trailerLoaded, setTrailerLoaded] = useState(false)
@@ -108,7 +109,6 @@ const Info = ({detail}) => {
     // and pass the first index[0].key as a props
 
     const OfficialTrailer = detail.videos.results.filter(video => video.type === 'Trailer')
-
     let trailer = <Error > <h1> Can't find trailer for this movie. </h1> </Error> 
     if(OfficialTrailer.length !== 0 ) {
                 trailer =    <>
@@ -118,28 +118,27 @@ const Info = ({detail}) => {
                                 </VideoModal> 
                             </>
         }
+
+    
     return (
         <Fragment > 
-        <SinglePoster detail={detail} />
-        <Details>
+                <SinglePoster detail={detail} />
+                <Details>
             <Overview detail={detail}/>
             <Buttons> 
                 <Button onClick={() => setVideoModal(true)} > <i className='fa fa-play'></i> Trailer </Button>
-                <Button> <i className='fa fa-users'></i> Cast    </Button>
                 <Button> <i className='fa fa-globe'></i> <a href={detail.homepage ? detail.homepage : null} target="_blank" rel="noopener noreferrer" onClick={() => detail.homepage ? null : alert('No Website Available')} > Website </a></Button>
-                <Button> <i className='fa fa-pencil'></i> Reviews </Button>
             </Buttons>
-        {videoModal ? <VideoModalBackDrop onClick={() => {
+                        {videoModal ? <VideoModalBackDrop onClick={() => {
                                             setVideoModal(false)
                                             setTrailerLoaded(false)
                                         }}> 
-                             {trailer}
-                        </VideoModalBackDrop> 
-                        : null
+                             {trailer} 
+                                 </VideoModalBackDrop> : null 
                         }  
+
         </Details>
-         
-    </Fragment>
+        </Fragment>
     )
 }
 

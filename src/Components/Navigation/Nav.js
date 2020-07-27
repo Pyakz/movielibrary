@@ -1,9 +1,13 @@
-import React from 'react'
+import React,{ useContext } from 'react'
 import styled from 'styled-components'
 import NavLogo from './NavLogo';
 import NavPoster from './NavPoster';
 import NavGenres from './NavGenres';
+import { MovieGenre } from '../../Context/GenreContext';
+
+import Select from '../UI/Select';
 const NavBar = styled.nav`
+
     /* Setting up media queries */
     @media (min-height:1100px) { height:100vh; }
     @media (max-width:800px) { 
@@ -26,7 +30,6 @@ const NavBar = styled.nav`
     transition: all .35s ease-in-out;
     position: ${props => props.navHide ? 'sticky' : 'absolute'};
 
-   
     .active {
         background-color: #435c5c;
         border-radius: 1.5rem;
@@ -83,12 +86,13 @@ const CloseNav = styled.span`
 `;
 
 const Nav = (props) => {
-
+const { genre, setSort } = useContext(MovieGenre)
     return (
         <NavBar navHide={props.navHide} currentWidth={props.position}  >
-        
             <CloseNav onClick={props.clicked}> &#x2716; </CloseNav>
             <NavPoster />
+      
+            { genre ? <Select sort={setSort}/> : null }
             <NavGenres clicked={props.clicked}/>
             <NavLogo />
         </NavBar>

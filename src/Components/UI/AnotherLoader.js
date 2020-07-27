@@ -4,7 +4,6 @@ const AnotherLoader = () => {
     return (
     <Fragment> 
  
-       
     <div className="loading">
         <div className="finger finger-1">
           <div className="finger-item">

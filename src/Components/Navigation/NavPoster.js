@@ -9,8 +9,6 @@ const Logo = styled.div`
     margin-bottom: 1rem;
 `;
 
-const NavPoster = () => {
-    return <Logo> <img src={Poster} alt="Poster" /> </Logo>
-}
+const NavPoster = () => <Logo> <img src={Poster} alt="Poster" /> </Logo>
 
 export default NavPoster

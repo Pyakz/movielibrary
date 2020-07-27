@@ -10,7 +10,6 @@ const BDrop = styled.div`
     opacity:0.3;
     z-index:${props => props.navHide ? '8' : '-1'};
     transition: ease-in-out;
-
  
    @media(min-width:800px) {
         height: 100%;
@@ -19,14 +18,12 @@ const BDrop = styled.div`
         display:none;
         background-color:transparent;
     }
-
-    /* @media(max-height:799px) {height: 100vh; } */
     
 
 `;
 const Backdrop = ({click, position, navHide}) => {
 
-    //this backdrop will appear everytime the navbar 
+    // this backdrop will appear everytime the navbar 
     // is toggled between max width of 400 but this 
     // will not appear on 401px up
    // this click prop will close the nav if the backdrop is clicked

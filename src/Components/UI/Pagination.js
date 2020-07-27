@@ -14,7 +14,6 @@ const Page = styled.div`
     align-items:center;
         
     div {
-
             display:flex;
             flex-direction:row;
             justify-content:space-around;
