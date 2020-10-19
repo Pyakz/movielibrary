@@ -101,7 +101,7 @@ const App = () => {
                     <Route exact path='/:category' render={(props) => <Movies  {...props} navHide={navHide} position={position}/>} />
                     <Route exact path='/results' render={(props) => <Movies  {...props} navHide={navHide} position={position}/>} />
                     <Route exact path='/movie/:id' render={(props) => <Movie  {...props} navHide={navHide} position={position}/>} />
-                    <Route path='/'  render={() => <h1> cant find</h1>} />
+                    <Route path='*'  render={() => <h1> cant find</h1>} />
                   </Switch>
         </Scroll>
       </Container> 
